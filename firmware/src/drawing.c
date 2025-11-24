@@ -1,6 +1,6 @@
 #include "drawing.h"
 
-#include <Arduino.h>
+#include <avr/io.h>
 #include <avr/pgmspace.h>
 
 // number of there and backs
@@ -56,8 +56,11 @@ uint16_t write_char(uint8_t x, uint8_t y, char c){
     return data.width;
 }
 
+/*
+#include <avr/interrupt.h>
+
 void write(const char *s, int len){
-    noInterrupts();
+    cli(); // disable interrupts
     uint16_t x = 0;
     uint16_t y = 0;
     for(int i = 0; i < len; i++){
@@ -75,5 +78,6 @@ void write(const char *s, int len){
             y += CHAR_HEIGHT + 1;
         }
     }
-    interrupts();
+    sei(); // enable interrupts
 }
+*/

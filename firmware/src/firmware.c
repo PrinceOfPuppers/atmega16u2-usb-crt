@@ -1,7 +1,6 @@
-#include "HID-Project.h"
-
 #include "drawing.h"
 #include <string.h>
+#include <avr/interrupt.h>
 #include <stdint.h>
 
 #define LINE_SPACING 0
@@ -140,7 +139,7 @@ void setup(){
 
 
 void write_to_screen(){
-    noInterrupts();
+    cli(); // disable interrupts
     uint16_t x = 0;
     uint16_t y = 0;
     uint8_t line = 0; 
@@ -169,16 +168,20 @@ void write_to_screen(){
 
     }
     write_char(x, y, '_');
-    interrupts();
+    sei(); // enable interrupts
 }
 
-void loop(){
-    int bytesAvailable = RawHID.available();
-    while(bytesAvailable){
-        write_to_screen_buffer(RawHID.read());
-        bytesAvailable--;
-    }
-    write_to_screen();
+int main(){
+    setup();
+    while(1){
+        int bytesAvailable = RawHID.available();
+        while(bytesAvailable){
+            write_to_screen_buffer(RawHID.read());
+            bytesAvailable--;
+        }
+        write_to_screen();
 
-    return;
+    }
+
+    return 0;
 }

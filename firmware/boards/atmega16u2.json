@@ -1,0 +1,16 @@
+{
+  "name": "ATmega16U2 Custom Board",
+  "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega16U2.pdf",
+  "vendor": "Custom",
+
+  "build": {
+    "core": "atmelavr",
+    "mcu": "atmega16u2",
+    "f_cpu": "16000000L"
+  },
+
+  "upload": {
+    "maximum_size": 15872,
+    "maximum_ram_size": 512
+  }
+}
