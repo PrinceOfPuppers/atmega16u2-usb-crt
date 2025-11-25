@@ -2,6 +2,8 @@
 #include <string.h>
 #include <avr/interrupt.h>
 #include <stdint.h>
+#include "LUFAConfig.h"
+// #include <LUFA/Drivers/USB/USB.h>
 
 #define LINE_SPACING 0
 #define CHARACTER_SPACING 0
